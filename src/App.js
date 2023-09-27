@@ -1,9 +1,11 @@
 import Topbar from "./scenes/global/Topbar";
 import { ColorModeContext, useMode } from "./theme";
-import { CssBaseline, ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@material-ui/core";
 
 function App() {
   const [theme, colorMode] = useMode();
+  console.log("App Theme: ", theme.palette.mode);
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider value={theme}>
