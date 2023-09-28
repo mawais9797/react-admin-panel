@@ -10,21 +10,28 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { useMemo } from "react";
-import { useTheme } from "@material-ui/core";
+// import { useTheme } from "@material-ui/core";
 
 const Topbar = () => {
   // const [theme] = useMode();
   const theme = useTheme();
-  console.log("theme Topbar: ", theme);
+  console.log("theme Topbar: ", theme.palette.mode);
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
-  console.log("theme: ", theme);
+
+  // Calculate the background color based on the current theme mode
+  const buttonBackgroundColor = useMemo(() => {
+    return theme.palette.mode === "dark"
+      ? colors.primary[100] // Dark mode color
+      : colors.primary[900]; // Light mode color
+  }, [theme.palette.mode, colors]);
+
   return (
     <Box display="flex" justifyContent="space-between" p={2}>
       {/* Search Bar */}
       <Box
         display="flex"
-        backgroundColor={colors.primary[400]}
+        backgroundColor={colors.primary[200]}
         borderRadius="3px"
       >
         <InputBase sx={{ ml: 2, flex: 1 }} placeholder="Search" />
@@ -35,7 +42,10 @@ const Topbar = () => {
 
       {/* ICONS SECTION  */}
       <Box display="flex">
-        <IconButton onClick={colorMode.toggleColorMode}>
+        <IconButton
+          sx={{ color: buttonBackgroundColor }}
+          onClick={colorMode.toggleColorMode}
+        >
           {theme.palette.mode === "dark" ? (
             <DarkModeOutlinedIcon />
           ) : (
@@ -44,13 +54,13 @@ const Topbar = () => {
             </>
           )}
         </IconButton>
-        <IconButton>
+        <IconButton sx={{ color: buttonBackgroundColor }}>
           <NotificationsOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton sx={{ color: buttonBackgroundColor }}>
           <SettingsOutlinedIcon />
         </IconButton>
-        <IconButton>
+        <IconButton sx={{ color: buttonBackgroundColor }}>
           <PersonOutlinedIcon />
         </IconButton>
       </Box>

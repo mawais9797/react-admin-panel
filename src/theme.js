@@ -17,10 +17,10 @@ export const tokens = (mode) => ({
           900: "#141414",
         },
         primary: {
-          100: "#d0d1d5",
+          100: "#000000", //#d0d1d5
           200: "#a1a4ab",
           300: "#727681",
-          400: "#f2f0f0",
+          400: "#f2f0f0", //updated by video 101624 #1F2A40
           500: "#141b2d",
           600: "#101624",
           700: "#0c101b",
@@ -153,7 +153,7 @@ export const themeSettings = (mode) => {
             },
             neutral: {
               dark: colors.grey[700],
-              main: colors.gery[500],
+              main: colors.grey[500],
               light: colors.grey[100],
             },
             background: {
